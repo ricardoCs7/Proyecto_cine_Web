@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" xmlns="http://thymeleaf.org">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+  <script type='text/javascript'>
+    $(document).ready(function () {
+      $('#datetimepicker1').datetimepicker();
+    });
+  </script>
+
+</head>
+
+<body>
+
+
+  <div class=" container"
+    style="margin-block-start: 5%; background-color: whitesmoke ; padding-top: 30px; padding-bottom: 30px; border-radius: 9px">
+
+    <form class="form-group row" th:action="@{/funcion/crear}" th:object="${funcion}" method="POST">
+
+      <div class="form-group">
+        <label for="">Película:</label>
+        <select th:field="*{peliculaid}" class="form-control" required>
+          <option required class="form-control" th:each=" pelicula: ${peliculas}" th:text="${pelicula.titulo}"
+            th:value="${pelicula.id}"></option>
+        </select>
+        <br>
+      </div>
+      <hr style="border-color: blue">
+
+      <div class="form-group">
+        <div>
+          <label for="">Tipo Función:</label>
+          <br>
+          <br>
+          <div class="form-check-inline">
+            <label  class="form-check-label" style="padding-right: 20px">
+              <input th:each="tf : ${tiposFuncion}" th:text="${tf.descripcion + '    -$' + tf.precio+'  |  '}"
+                type="radio" class="form-check-input" th:value="${tf.id}" th:field="*{tipoid}">
+
+            </label>
+          </div>
+        </div>
+      </div>
+      <br>
+      <hr style="border-color: blue">
+
+      <div>
+        <div class="form-group ">
+          <label class="control-label">Fecha:</label>
+          <div class='input-group date' id='datetimepicker1'>
+            <input th:field="*{fecha}" type='text' class="form-control" />
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="">Sala:</label>
+        <select th:field="*{salaid}" class="form-control" required>
+          <option required class="form-control" th:each=" sala: ${salas}" th:text="${sala.nombreSala}"
+            th:value="${sala.id}"></option>
+        </select>
+        <br>
+      </div>
+      <br>
+      <br>
+      <div style="align-content: center">
+        <button type="submit" class="btn btn-primary">Crear Funcion</button>
+      </div>
+  </div>
+
+
+
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/2.14.1/moment.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+</body>
+
+</html>

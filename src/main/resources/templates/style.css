@@ -1,0 +1,59 @@
+
+#form-registroUser{
+    margin-block-start: 40px;
+}
+
+#form-pelicula{
+    margin-block-start: 40px;
+
+}
+
+#caro{
+    margin-left: 50px;
+}
+
+.item {
+    display: block;
+    width: 100%;
+    height: 200px;
+}
+.item img {
+    height: 100%;
+    width: 100%;
+}
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+  }
+  
+  
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+  
+  .fa-twitter {
+    background: #55ACEE;
+    color: white;
+  }
+  
+
+  .fa-youtube {
+    background: #bb0000;
+    color: white;
+  }
+  
+  .fa-instagram {
+    background: #125688;
+    color: white;
+  }
+  
+
+  
+ 
