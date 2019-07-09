@@ -42,7 +42,8 @@
             <div class="col" th:each="p : ${listaPeliculas}">
                 <div class="card-group">
                     <div class="card ">
-                        <img th:src="@{${p.url}}" height="355px" | class="card-img-top">
+                        <img th:src="@{${p.url}}" 
+                         height="355px" | class="card-img-top">
                         <div class="card-body">
                             <h4 th:text="${p.titulo}" class="card-title"></h4>
                             <hr>

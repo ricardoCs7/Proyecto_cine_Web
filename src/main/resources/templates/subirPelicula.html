@@ -49,7 +49,7 @@
     </nav>
 
 
-    <div  class="container" id="form-pelicula">
+    <div class="container" id="form-pelicula" style="padding-left: 250px;margin-top: 30px">
         <form action="#" th:action="@{/formPelicula}" th:object="${pelicula}" method="POST">
             <div class="form-group col-8">
                 <label for="">Titulo Pelicula:</label>
@@ -104,8 +104,8 @@
                 <!-- Content -->
                 <h6 class="text-uppercase"><strong>Download</strong></h6>
 
-                <p>Imagen playstore</p>
-                <p>Imagen Appstore</p>
+                <img src="http://www.logospng.com/images/212/windows-app-store-icon-download-ndash-free-icons-212452.png"
+                    width="90%" alt="">
 
             </div>
             <!-- Grid column -->
@@ -149,7 +149,7 @@
                         <a href="#!">Trabaja con nosotros</a>
                     </li>
                     <li>
-                        <a th:href="@{/login}">Login Admin</a>
+                        <a th:href="@{/adminApp}">Login Admin</a>
                     </li>
                     <li>
                         <a href="#!">Términos y Condiciones</a>
@@ -199,7 +199,7 @@
 
     </footer>
     <!-- Footer -->
-
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
