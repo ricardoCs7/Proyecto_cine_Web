@@ -23,5 +23,11 @@ public class VistaController {
 
         return "index";
     }
+    
+    @GetMapping("/adminApp")
+    public String admin() {
+
+        return "adminApp";
+    }
 
 }

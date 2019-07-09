@@ -40,7 +40,7 @@ public class PeliculaController {
     @Autowired
     private CategoriaDAO cDAO;
 
-    @RequestMapping("/subirPelicula")
+    @RequestMapping("/peliculas/subir")
     public String subirPeliPage(Model model) {
         model.addAttribute("pelicula", new Pelicula());
         model.addAttribute("idiomas", iDAO.findAll());
@@ -69,7 +69,7 @@ public class PeliculaController {
         
     }
 
-    @PostMapping("/pelicula/subir")
+    @PostMapping("/formPelicula")
     public String subirPeli(@ModelAttribute Pelicula pelicula) {
 
         ArrayList<Pelicula> peliculas = (ArrayList<Pelicula>) pDAO.findAll();

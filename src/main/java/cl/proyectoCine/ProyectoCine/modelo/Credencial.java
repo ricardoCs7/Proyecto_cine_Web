@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -25,10 +23,10 @@ import javax.validation.constraints.Size;
  * @author Ricardo
  */
 @Entity
-@Table(name = "asiento")
+@Table(name = "credencial")
 @NamedQueries({
-    @NamedQuery(name = "Asiento.findAll", query = "SELECT a FROM Asiento a")})
-public class Asiento implements Serializable {
+    @NamedQuery(name = "Credencial.findAll", query = "SELECT c FROM Credencial c")})
+public class Credencial implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -38,25 +36,26 @@ public class Asiento implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 3)
-    @Column(name = "nombre")
-    private String nombre;
-    @Column(name="ocupado")
-    private boolean ocupado;
-    @JoinColumn(name = "id_Sala", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Sala idSala;
+    @Size(min = 1, max = 20)
+    @Column(name = "userName")
+    private String userName;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "password")
+    private String password;
 
-    public Asiento() {
+    public Credencial() {
     }
 
-    public Asiento(Integer id) {
+    public Credencial(Integer id) {
         this.id = id;
     }
 
-    public Asiento(Integer id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
+    public Credencial(String userName, String password) {
+        
+        this.userName = userName;
+        this.password = password;
     }
 
     public Integer getId() {
@@ -67,31 +66,21 @@ public class Asiento implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public Sala getIdSala() {
-        return idSala;
+    public String getPassword() {
+        return password;
     }
 
-    public void setIdSala(Sala idSala) {
-        this.idSala = idSala;
+    public void setPassword(String password) {
+        this.password = password;
     }
-
-    public boolean isOcupado() {
-        return ocupado;
-    }
-
-    public void setOcupado(boolean ocupado) {
-        this.ocupado = ocupado;
-    }
-    
-    
 
     @Override
     public int hashCode() {
@@ -103,10 +92,10 @@ public class Asiento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Asiento)) {
+        if (!(object instanceof Credencial)) {
             return false;
         }
-        Asiento other = (Asiento) object;
+        Credencial other = (Credencial) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -115,7 +104,7 @@ public class Asiento implements Serializable {
 
     @Override
     public String toString() {
-        return "cl.proyectoCine.ProyectoCine.modelo.Asiento[ id=" + id + " ]";
+        return "cl.proyectoCine.ProyectoCine.modelo.Credencial[ id=" + id + " ]";
     }
     
 }

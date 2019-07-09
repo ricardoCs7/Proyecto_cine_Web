@@ -3,23 +3,22 @@
 
 <head>
     <title>Idiomas</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css‌​/bootstrap-glyphicon‌​s.css">
+    <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 
 <body>
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <!-- Brand -->
         <a class="navbar-brand" href="/index">
-            <img src="https://banner2.kisspng.com/20180328/qlw/kisspng-film-festival-world-cinema-box-office-movie-5abbd41cdae611.6378886715222589728966.jpg"
-                alt="logo" style="width:50px;">
+            <img src="http://cdn.onlinewebfonts.com/svg/img_554322.png" alt="logo" style="width:50px;">
         </a>
         <!-- Links -->
         <ul class="navbar-nav">
@@ -27,10 +26,10 @@
                 <a class="nav-link" href="/cartelera">Cartelera</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/registroUser">Registrar Usuario</a>
+                <a class="nav-link" href="/usuarios/crear">Registrar Usuario</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/subirPelicula">Subir Pelicula</a>
+                <a class="nav-link" href="/peliculas/subir">Subir Pelicula</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/login">Iniciar Sesion</a>
@@ -42,12 +41,13 @@
                     Dropdown link
                 </a>
                 <div class="dropdown-menu">
-                        <a class="dropdown-item active" href="/verIdiomas">Listado Idiomas</a>
-                        <a class="dropdown-item" href="/verCategorias">Listado Categorias</a>
-                    </div>
+                    <a class="dropdown-item active" th:href="@{/idiomas/ver}">Listado Idiomas</a>
+                    <a class="dropdown-item" th:href="@{/categorias/ver}">Listado Categorías</a>
+                </div>
             </li>
         </ul>
     </nav>
+
 
 
 
@@ -67,14 +67,15 @@
                     <td th:text="${idioma.descripcion}"> </td>
 
                     <td>
-                        <a  th:href="@{/editarIdioma/{id} (id=${idioma.id})}">Editar</a>
-                        <span class="fa-stack">
-                            <a class="glyphicon glyphicon-trash"></a>
-                        </span>
+                        <a method="PUT" th:object="${idioma}" th:href="@{'/editarIdioma/'+${idioma.id}}">Editar
+                            <span class="fa-stack">
+                                <a class="glyphicon glyphicon-trash"></a>
+                            </span>
+                        </a>
                     </td>
 
-                    <td>
-                        <a th:href="@{/eliminarIdioma/{id} (id=${idioma.id})}" >Eliminar</a>
+                    <td method="DELETE" th:object="${idioma}">
+                        <a th:href="@{'/idioma/eliminar/'+${idioma.id}}">Eliminar</a>
                         <span class="fa-stack">
                             <i class="glyphicon glyphicon-trash"></i>
                         </span>
@@ -89,20 +90,128 @@
         </table>
 
 
-        <button  onclick="location.href='/crearIdioma'" class="btn btn-info" type="submit">Crear Idioma</button>
+        <a th:href="@{/idiomas/crear}" class="btn btn-info">Crear Idioma</a>
 
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+
+
+ 
+
+    <!-- Footer -->
+
+    <!-- Footer Links -->
+    <div style="margin-block-start: 140px" class="container-fluid text-center text-md-left">
+
+        <!-- Grid row -->
+        <div class="row bg-dark navbar-dark" style="color: white">
+
+            <!-- Grid column -->
+            <div class="col-md-3 mt-md-0 mt-3 " style="color: white">
+
+                <!-- Content -->
+                <h6 class="text-uppercase"><strong>Download</strong></h6>
+
+                <img src="http://www.logospng.com/images/212/windows-app-store-icon-download-ndash-free-icons-212452.png"
+                    width="90%" alt="">
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+                <!-- Links -->
+                <h6 class="text-uppercase"><strong>WebSite</strong></h6>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a th:href="@{/cartelera}">Cartelera</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/funciones/ver}">Ver Funciones</a>
+                    </li>
+                    <li>
+                        <a href="#!">link</a>
+                    </li>
+                    <li>
+                        <a href="#!">Ventas Corporativas</a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+                <!-- Links -->
+                <h6 class="text-uppercase"><strong>Corporativo</strong></h6>
+
+                <ul class="list-unstyled" id="aaa">
+                    <li>
+                        <a href="#!">Quiénes Somos</a>
+                    </li>
+                    <li>
+                        <a href="#!">Trabaja con nosotros</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/adminApp}">Login Admin</a>
+                    </li>
+                    <li>
+                        <a href="#!">Términos y Condiciones</a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">
+
+                <!-- Links -->
+                <h6 class="text-uppercase"><strong>Búscanos en RRSS</strong></h6>
+
+
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#!" class="fa fa-twitter"> | Twitter</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="fa fa-instagram"> | Instagram</a>
+                    </li>
+                    <li>
+                        <a href="#!" class="fa fa-facebook"> | Facebook </a>
+                    </li>
+                    <li>
+                        <a href="#!" class="fa fa-youtube"> | Youtube</a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <footer class="page-footer">
+        <div class="footer-copyright text-center py-3  " style="color: white; background-color: lightseagreen"> © 2019
+            Copyright
+        </div>
+        <!-- Copyright -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>

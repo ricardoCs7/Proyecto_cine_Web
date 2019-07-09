@@ -31,20 +31,20 @@ public class CategoriaController {
     @Autowired
     private CategoriaDAO cDAO;
 
-    @GetMapping("/verCategorias")
+    @GetMapping("/categorias/ver")
     public String verCartelera(Model model) {
 
         model.addAttribute("categorias", cDAO.findAll());
         return "verCategorias";
     }
 
-    @GetMapping("/crearCategoria")
+    @GetMapping("/categorias/crear")
     public String createIdioma(Model model) {
         model.addAttribute("categoria", new Categoria());
         return "crearCategoria";
     }
 
-    @PostMapping("/categoria/crear")
+    @PostMapping("/categoriaForm")
     public String createCategoria(@ModelAttribute Categoria categoria) {
         ArrayList<Categoria> categorias = (ArrayList<Categoria>) cDAO.findAll();
 
@@ -56,7 +56,7 @@ public class CategoriaController {
 
         cDAO.save(categoria);
 
-        return "redirect:/verCategorias";
+        return "redirect:/categorias/ver";
     }
 
     @DeleteMapping("/deleteCategoria/{id}")

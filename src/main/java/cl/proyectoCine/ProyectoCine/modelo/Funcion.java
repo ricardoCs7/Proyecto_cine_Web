@@ -43,20 +43,24 @@ public class Funcion implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "precio")
+    private int precio;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "funcion")
     private List<Venta> ventaList;
-    @JoinColumn(name = "Tipoid", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Tipo tipoid;
     @JoinColumn(name = "Peliculaid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Pelicula peliculaid;
     @JoinColumn(name = "Salaid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Sala salaid;
+    @JoinColumn(name = "Tipoid", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Tipo tipoid;
 
     public Funcion() {
     }
@@ -65,8 +69,9 @@ public class Funcion implements Serializable {
         this.id = id;
     }
 
-    public Funcion(Integer id, Date fecha) {
+    public Funcion(Integer id, int precio, Date fecha) {
         this.id = id;
+        this.precio = precio;
         this.fecha = fecha;
     }
 
@@ -76,6 +81,14 @@ public class Funcion implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
     public Date getFecha() {
@@ -94,14 +107,6 @@ public class Funcion implements Serializable {
         this.ventaList = ventaList;
     }
 
-    public Tipo getTipoid() {
-        return tipoid;
-    }
-
-    public void setTipoid(Tipo tipoid) {
-        this.tipoid = tipoid;
-    }
-
     public Pelicula getPeliculaid() {
         return peliculaid;
     }
@@ -116,6 +121,14 @@ public class Funcion implements Serializable {
 
     public void setSalaid(Sala salaid) {
         this.salaid = salaid;
+    }
+
+    public Tipo getTipoid() {
+        return tipoid;
+    }
+
+    public void setTipoid(Tipo tipoid) {
+        this.tipoid = tipoid;
     }
 
     @Override

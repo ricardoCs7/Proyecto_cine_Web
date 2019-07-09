@@ -28,28 +28,28 @@ public class IdiomaController {
     @Autowired
     IdiomaDAO iDAO;
 
-    @GetMapping("/verIdiomas")
+    @GetMapping("/idiomas/ver")
     public String verIdioma(Model model) {
 
         model.addAttribute("idiomas", iDAO.findAll());
         return "verIdiomas";
     }
 
-    @GetMapping("/crearIdioma")
+    @GetMapping("/idiomas/crear")
     public String createIdioma(Model model) {
         model.addAttribute("idioma", new Idioma());
         return "crearIdioma";
     }
 
-    @PostMapping("/idioma/crear")
+    @PostMapping("/idiomaForm")
     public String createIdioma(@ModelAttribute Idioma idioma) {
         ArrayList<Idioma> idiomas = (ArrayList<Idioma>) iDAO.findAll();
 
         if (idiomas.isEmpty()) {
             idioma.setId(1);
-        }else
-                
-        idioma.setId(idiomas.get(idiomas.size() - 1).getId() + 1);
+        } else {
+            idioma.setId(idiomas.get(idiomas.size() - 1).getId() + 1);
+        }
 
         System.out.println(idioma.getDescripcion());
 
@@ -64,27 +64,19 @@ public class IdiomaController {
 //        if (iDAO.findById(idioma.getId()).isPresent()) {
 //            return null;
 //        }
-        return "redirect:/verIdiomas";
+        return "redirect:/idiomas/ver";
     }
 
 //   @PutMapping("/editarIdioma/{id}"){
 //     public String editIdioma(@PathVariable("id") int id) {
 //    
 //}
-    
-    
-    
-    @DeleteMapping("/eliminarIdioma/{id}")
+    @DeleteMapping("/idioma/eliminar/{id}")
     public String deleteIdioma(@PathVariable("id") Integer id) {
 
-        if (!iDAO.findById(id).isPresent()) {
+        iDAO.deleteById(id.intValue());
 
-            return "Idioma no existe";
-        }
-        Optional<Idioma> currentIdioma = iDAO.findById(id);
-
-        iDAO.deleteById(id);
-        return "redirect:/verIdiomas";
+        return "redirect:/idiomas/ver";
     }
 
 }

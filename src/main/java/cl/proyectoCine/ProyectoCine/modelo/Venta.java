@@ -18,7 +18,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -38,11 +37,6 @@ public class Venta implements Serializable {
     private Integer nroBoleta;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
-    @Column(name = "Usuario")
-    private String usuario;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "total")
     private int total;
     @JoinColumn(name = "Usuarioid", referencedColumnName = "id")
@@ -59,9 +53,8 @@ public class Venta implements Serializable {
         this.nroBoleta = nroBoleta;
     }
 
-    public Venta(Integer nroBoleta, String usuario, int total) {
+    public Venta(Integer nroBoleta, int total) {
         this.nroBoleta = nroBoleta;
-        this.usuario = usuario;
         this.total = total;
     }
 
@@ -71,14 +64,6 @@ public class Venta implements Serializable {
 
     public void setNroBoleta(Integer nroBoleta) {
         this.nroBoleta = nroBoleta;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
     }
 
     public int getTotal() {

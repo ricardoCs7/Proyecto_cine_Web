@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://thymeleaf.org">
 
 <head>
-  <title>Funciones Disponibles</title>
+  <title>Creando Sala</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,10 +12,9 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-
 <body>
 
-  <nav class="navbar fixed navbar-expand-sm bg-dark navbar-dark">
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand -->
     <a class="navbar-brand" href="/index">
       <img src="http://cdn.onlinewebfonts.com/svg/img_554322.png" alt="logo" style="width:50px;">
@@ -28,56 +27,45 @@
       <li class="nav-item">
         <a class="nav-link" href="/usuarios/crear">Registrar Usuario</a>
       </li>
-
+      <li class="nav-item">
+        <a class="nav-link" href="/peliculas/subir">Subir Pelicula</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="/login">Iniciar Sesion</a>
       </li>
 
-
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item active" th:href="@{/idiomas/ver}">Listado Idiomas</a>
+          <a class="dropdown-item" th:href="@{/categorias/ver}">Listado Categorías</a>
+        </div>
+      </li>
     </ul>
   </nav>
 
-
-  <div class="container">
-    <hr>
-    <h1 style="text-align: center"><strong>Funciones Disponibles</strong></h1>
-    <hr>
-    <br>
-    <div th:each="f : ${funcionesById}">
-      <br>
-      <div class="row">
-        <div class="col-sm-2">
-          <img th:src="@{${f.peliculaid.url}}" style="width: 100%" ; height="100%" alt="">
-        </div>
-
-        <div class="card-body col-sm-6" style="background-color:yellow;">
-          <h4 th:text="'Título: ' + ${f.peliculaid.titulo}"></h4>
-          <hr>
-          <p class="card-text" th:text="'Tipo Función: '+${f.tipoid.descripcion}"></p>
-          <p class="card-text" th:text="'Precio: $'+${f.tipoid.precio}"></p>
-          <p class="card-text" th:text="'Fecha: '+${f.fecha}"></p>
-          <p class="card-text" th:text="${f.salaid.nombreSala}"></p>
-        </div>
-        <div></div>
-        <a th:href="@{'/venta/funcion/'+${f.id}}" class="btn btn-primary">Seleccionar</a>
+  <div class="container  justify-content-center" style="margin-block-start: 30px">
+    <form th:action="@{/salaForm}" th:object="${sala}" method="POST">
+      <div class="form-group col-6">
+        <label for="">Nombre de la sala</label>
+        <input th:field="*{nombreSala}" required type="text" name="" id="" class="form-control" placeholder=""
+          aria-describedby="helpId">
+        <br>
+        <button type="submit" class="btn btn-primary">Crear</button>
+        <a th:href="@{/salas/ver}" class="btn btn-danger">Volver</a>
 
       </div>
-      <br>
 
-    </div>
-    <button onclick="location.href='/cartelera'" type="submit" class="btn btn-primary">Volver</button>
-  </div>
-
-  <div>
+    </form>
 
   </div>
-
-
-
   <!-- Footer -->
 
   <!-- Footer Links -->
-  <div style="margin-block-start: 40px" class="container-fluid text-center text-md-left">
+  <div style="margin-block-start: 240px" class="container-fluid text-center text-md-left">
 
     <!-- Grid row -->
     <div class="row bg-dark navbar-dark" style="color: white">
@@ -88,8 +76,8 @@
         <!-- Content -->
         <h6 class="text-uppercase"><strong>Download</strong></h6>
 
-        <p>Imagen playstore</p>
-        <p>Imagen Appstore</p>
+        <img src="http://www.logospng.com/images/212/windows-app-store-icon-download-ndash-free-icons-212452.png"
+          width="90%" alt="">
 
       </div>
       <!-- Grid column -->
@@ -133,7 +121,7 @@
             <a href="#!">Trabaja con nosotros</a>
           </li>
           <li>
-            <a th:href="@{/login}">Login Admin</a>
+            <a th:href="@{/adminApp}">Login Admin</a>
           </li>
           <li>
             <a href="#!">Términos y Condiciones</a>

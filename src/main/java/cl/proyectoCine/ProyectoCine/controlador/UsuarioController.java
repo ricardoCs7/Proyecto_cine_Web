@@ -31,7 +31,7 @@ public class UsuarioController {
     @Autowired
     UsuarioDAO uDAO;
 
-    @GetMapping("/registroUser")
+    @GetMapping("/usuarios/crear")
     public String registroUserPage(Model model) {
         model.addAttribute("usuario", new Usuario());
         return "registroUser";
@@ -69,7 +69,7 @@ public class UsuarioController {
 
     }
 
-    @PostMapping("/usuario/crear")
+    @PostMapping("/usuarioForm")
     public String createUsaurios(@ModelAttribute Usuario usuario) {
 
         ArrayList<Usuario> usuarios = (ArrayList<Usuario>) uDAO.findAll();

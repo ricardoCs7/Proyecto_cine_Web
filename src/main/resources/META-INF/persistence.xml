@@ -12,6 +12,7 @@
     <class>cl.proyectoCine.ProyectoCine.modelo.Idioma</class>
     <class>cl.proyectoCine.ProyectoCine.modelo.Tipofuncion</class>
     <class>cl.proyectoCine.ProyectoCine.modelo.Tipo</class>
+    <class>cl.proyectoCine.ProyectoCine.modelo.Credencial</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/proyecto_cine"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

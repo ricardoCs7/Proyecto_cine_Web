@@ -40,7 +40,7 @@ public class Sala implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 10)
-    @Column(name = "nombreSala")
+    @Column(name = "nombre_Sala")
     private String nombreSala;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSala")
     private List<Asiento> asientoList;

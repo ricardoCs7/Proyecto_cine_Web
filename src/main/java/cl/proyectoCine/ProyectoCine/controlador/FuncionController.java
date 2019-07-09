@@ -41,7 +41,7 @@ public class FuncionController {
     @Autowired
     private TipoDAO tDao;
 
-    @GetMapping("/verFunciones")
+    @GetMapping("/funciones/ver")
     public String verFuncion(Model model) {
 
         model.addAttribute("funciones", fDao.findAll());
@@ -49,7 +49,7 @@ public class FuncionController {
         return "verFunciones";
     }
 
-    @RequestMapping("/crearFuncion")
+    @RequestMapping("/funciones/crear")
     public String crearF(Model model) {
         model.addAttribute("funcion", new Funcion());
         model.addAttribute("peliculas", pDao.findAll());
@@ -77,7 +77,7 @@ public class FuncionController {
 
         fDao.save(funcion);
 
-        return "redirect:/verFunciones";
+        return "redirect:/funciones/ver";
 
     }
 
@@ -88,6 +88,20 @@ public class FuncionController {
         model.addAttribute("funcionesById", pDao.findById(id).get().getFuncionList());
 
         return "funcionPelicula";
+    }
+
+    
+    //abrir la sala de la funcion con id= n;
+    @GetMapping("venta/funcion/{id}")
+    public String pageSalaF(@PathVariable("id") Integer id,Model model) {
+
+        model.addAttribute("asientos", fDao.findById(id).get().getSalaid().getAsientoList());
+        model.addAttribute("funcion", fDao.findById(id).get().getPeliculaid().getTitulo());
+      
+        
+
+        return "redirect:/venta/ver/" + id;
+
     }
 
 }
